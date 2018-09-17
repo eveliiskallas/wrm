@@ -76,13 +76,16 @@ class Application extends SilexApplication
     /**
      * Define all used routes and connect a route to its controller.
      */
-    private function configureControllers()
+     private function configureControllers()
     {
         $this
             ->match('/bookings/create', new CreateBookingController(
                 $this['form.factory'],
-                $this['twig']
-        ));
-
+                $this['twig'],
+                $this['db']
+            ))
+            ->method('GET|POST')
+        ;
     }
 }
+
